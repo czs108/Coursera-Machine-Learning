@@ -100,6 +100,12 @@ Delta2 = Delta2 + delta3 * a2;
 Theta1_grad = Delta1 / m;
 Theta2_grad = Delta2 / m;
 
+% Regularization
+Theta1(:, 1) = 0;
+Theta2(:, 1) = 0;
+Theta1_grad = Theta1_grad + lambda * Theta1 / m;
+Theta2_grad = Theta2_grad + lambda * Theta2 / m;
+
 % -------------------------------------------------------------
 
 % =========================================================================
