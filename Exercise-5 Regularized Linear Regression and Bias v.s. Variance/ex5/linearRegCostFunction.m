@@ -24,7 +24,7 @@ errors = predictions - y;
 theta(1, :) = 0;
 J = 1 / (2 * m) * (errors' * errors) + lambda / (2 * m) * (theta' * theta);
 
-
+grad = ((errors' * X)' + lambda * theta) / m;
 
 
 
