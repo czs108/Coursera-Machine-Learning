@@ -128,6 +128,29 @@ ylabel('Microchip Test 2')
 legend('y = 1', 'y = 0', 'Decision boundary')
 hold off;
 
+% Choose different regularization parameter lambda
+lambda2 = 0;
+[theta2, J2, exit_flag] = ...
+	fminunc(@(t)(costFunctionReg(t, X, y, lambda2)), initial_theta, options);
+plotDecisionBoundary(theta2, X, y);
+hold on;
+title(sprintf('lambda = %g', lambda2))
+xlabel('Microchip Test 1')
+ylabel('Microchip Test 2')
+legend('y = 1', 'y = 0', 'Decision boundary')
+hold off;
+
+lambda3 = 100;
+[theta3, J3, exit_flag] = ...
+	fminunc(@(t)(costFunctionReg(t, X, y, lambda3)), initial_theta, options);
+plotDecisionBoundary(theta3, X, y);
+hold on;
+title(sprintf('lambda = %g', lambda3))
+xlabel('Microchip Test 1')
+ylabel('Microchip Test 2')
+legend('y = 1', 'y = 0', 'Decision boundary')
+hold off;
+
 % Compute accuracy on our training set
 p = predict(theta, X);
 
