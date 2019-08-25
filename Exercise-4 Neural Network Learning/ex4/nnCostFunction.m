@@ -81,6 +81,8 @@ a2 = [ones(m, 1) sigmoid(a1 * Theta1')];    % 5000 x (25 + 1)
 H = sigmoid(a2 * Theta2')';     % 10 x 5000
 
 J = sum(sum(-ylabel .* log(H) - (1 - ylabel) .* log(1 - H))) / m;
+r = lambda * (sum(sum(Theta1(:, 2:end) .^ 2)) + sum(sum(Theta2(:, 2:end) .^ 2))) / (2 * m);
+J = J + r;
 
 % -------------------------------------------------------------
 
