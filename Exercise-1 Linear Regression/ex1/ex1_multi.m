@@ -89,9 +89,23 @@ num_iters = 400;
 theta = zeros(3, 1);
 [theta, J_history] = gradientDescentMulti(X, y, theta, alpha, num_iters);
 
+% Choose different alpha value
+alpha2 = 0.001;
+theta = zeros(3, 1);
+[theta, J_history2] = gradientDescentMulti(X, y, theta, alpha2, num_iters);
+
+alpha3 = 0.1;
+theta = zeros(3, 1);
+[theta, J_history3] = gradientDescentMulti(X, y, theta, alpha3, num_iters);
+
 % Plot the convergence graph
 figure;
 plot(1:numel(J_history), J_history, '-b', 'LineWidth', 2);
+hold on;
+plot(1:numel(J_history2), J_history2, '-r', 'LineWidth', 2);
+plot(1:numel(J_history3), J_history3, '-k', 'LineWidth', 2);
+
+legend('rate 0.01', 'rate 0.001', 'rate 0.1');
 xlabel('Number of iterations');
 ylabel('Cost J');
 
