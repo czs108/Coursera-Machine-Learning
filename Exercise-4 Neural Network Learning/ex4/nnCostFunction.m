@@ -62,23 +62,25 @@ Theta2_grad = zeros(size(Theta2));
 %               and Theta2_grad from Part 2.
 %
 
+% Number of Examples: 5000
+% Number of labels: 10
+% Size of input layer: 400
+% Size of hidden layer: 25
 
+% Theta1: 25 x (400 + 1)
+% Theta2: 10 x (25 + 1)
 
+% Map vector y to binary vector of 1's and 0's
+ylabel = zeros(num_labels, m);
+for i = 1:m
+    ylabel(y(i), i) = 1;    % 10 x 5000
+end
 
+a1 = [ones(m, 1) X];    % 5000 x (400 + 1)
+a2 = [ones(m, 1) sigmoid(a1 * Theta1')];    % 5000 x (25 + 1)
+H = sigmoid(a2 * Theta2')';     % 10 x 5000
 
-
-
-
-
-
-
-
-
-
-
-
-
-
+J = sum(sum(-ylabel .* log(H) - (1 - ylabel) .* log(1 - H))) / m;
 
 % -------------------------------------------------------------
 
