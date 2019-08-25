@@ -84,6 +84,22 @@ J = sum(sum(-ylabel .* log(H) - (1 - ylabel) .* log(1 - H))) / m;
 r = lambda * (sum(sum(Theta1(:, 2:end) .^ 2)) + sum(sum(Theta2(:, 2:end) .^ 2))) / (2 * m);
 J = J + r;
 
+delta3 = H - ylabel;    % 10 x 5000
+
+z2 = Theta1 * a1';    % 25 x 5000
+delta2 = Theta2' * delta3;      % (25 + 1) x 5000
+delta2 = delta2(2:end, :);      % 25 x 5000
+delta2 = delta2 .* sigmoidGradient(z2);     % 25 x 5000
+
+Delta1 = zeros(size(Theta1));   % 25 x (400 + 1)
+Delta1 = Delta1 + delta2 * a1;
+
+Delta2 = zeros(size(Theta2));   % 10 x (25 + 1)
+Delta2 = Delta2 + delta3 * a2;
+
+Theta1_grad = Delta1 / m;
+Theta2_grad = Delta2 / m;
+
 % -------------------------------------------------------------
 
 % =========================================================================
