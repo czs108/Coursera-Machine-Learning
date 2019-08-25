@@ -20,10 +20,10 @@ for iter = 1:num_iters
 
 
 
-
-
-
-
+    predictions = X * theta;
+    errors = predictions - y;
+    derivatives = ((1 / m) * errors' * X)';
+    theta = theta - alpha * derivatives;
 
 
 
