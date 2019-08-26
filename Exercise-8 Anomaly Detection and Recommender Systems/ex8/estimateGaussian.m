@@ -21,9 +21,9 @@ sigma2 = zeros(n, 1);
 %               should contain variance of the i-th feature.
 %
 
-
-
-
+mu = sum(X) / m;
+rep = repmat(mu, m, 1);     % repmat: Repeat matrix or N-D array
+sigma2 = sum((X - rep) .^ 2) / m;
 
 
 
